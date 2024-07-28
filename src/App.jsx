@@ -17,11 +17,21 @@ function App() {
     setForms([...forms, { id: newId, component: FormComponent }]);
   };
 
+  const handleDeleteForm = (setForms, forms, id) => {
+    if (forms.length > 1) {
+      setForms(forms.filter((form) => form.id !== id));
+    }
+  };
+
   const handleAddNewEd = () =>
     handleAddNewForm(setEdForms, edForms, <EducationForm key={Date.now()} />);
 
   const handleAddNewEx = () =>
     handleAddNewForm(setExForms, exForms, <ExperienceForm key={Date.now()} />);
+
+  const handleDeleteEd = (id) => handleDeleteForm(setEdForms, edForms, id);
+
+  const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
   return (
     <>
@@ -38,7 +48,13 @@ function App() {
       <section id="education">
         {/* <h2>Education</h2> */}
         {/* map to only include the component (not the id) */}
-        {edForms.map((form) => form.component)}
+        {edForms.map(
+          (form) =>
+            // TODO: make this a creation of a form object
+            // (and make it null in handleAddNewEx)
+            // TODO: map onDelete function to form object
+            form.component
+        )}
         <button id="add-new" onClick={handleAddNewEd}>
           +
         </button>

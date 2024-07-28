@@ -1,4 +1,4 @@
-function EducationForm() {
+function EducationForm(canDelete, onDelete) {
   return (
     <div id="edu-info">
       <form action="">
