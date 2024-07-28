@@ -8,25 +8,20 @@ function App() {
     { id: Date.now(), component: <EducationForm key={Date.now()} /> },
   ]);
 
-  function handleAddNewEd() {
-    const newId = Date.now();
-    setEdForms([
-      ...edForms,
-      { id: newId, component: <EducationForm key={newId} /> },
-    ]);
-  }
-
   const [exForms, setExForms] = useState([
     { id: Date.now(), component: <ExperienceForm key={Date.now()} /> },
   ]);
 
-  function handleAddNewEx() {
+  const handleAddNewForm = (setForms, forms, FormComponent) => {
     const newId = Date.now();
-    setExForms([
-      ...exForms,
-      { id: newId, component: <ExperienceForm key={newId} /> },
-    ]);
-  }
+    setForms([...forms, { id: newId, component: FormComponent }]);
+  };
+
+  const handleAddNewEd = () =>
+    handleAddNewForm(setEdForms, edForms, <EducationForm key={Date.now()} />);
+
+  const handleAddNewEx = () =>
+    handleAddNewForm(setExForms, exForms, <ExperienceForm key={Date.now()} />);
 
   return (
     <>
