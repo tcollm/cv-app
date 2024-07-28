@@ -2,7 +2,7 @@ function EducationForm() {
   return (
     <div id="edu-info">
       <form action="">
-        <legend>Educational Experience</legend>
+        <button id="delete">x</button>
         <label htmlFor="school">Name of University</label>
         <input type="text" id="school" required />
         <label htmlFor="degree">Degree</label>

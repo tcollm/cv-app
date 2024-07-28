@@ -10,7 +10,7 @@ function ExperienceForm() {
   return (
     <div id="ex-info">
       <form action="">
-        <legend>Practical Experience</legend>
+        <button id="delete">x</button>
         <label htmlFor="company">Name of Company</label>
         <input type="text" id="company" required />
         <label htmlFor="title">Position Title</label>

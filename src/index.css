@@ -25,15 +25,16 @@ form {
   background-color: #1e1e1e;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
-
+/* 
 legend {
   padding: 8px 0px;
   color: #ff5733;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   text-align: center;
-}
+} */
 
 input {
   margin-bottom: 12px;
@@ -57,7 +58,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -83,8 +84,23 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   padding: 0;
   margin: 0;
   margin-left: 32px;
+}
+
+#delete {
+  position: absolute;
+  top: -16px;
+  right: 8px;
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#delete:hover {
+  color: #e74c3c;
 }
