@@ -1,6 +1,7 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function ExperienceForm() {
+function ExperienceForm({ onDelete, canDelete }) {
   const [currentlyWork, setCurrently] = useState(false);
 
   function handleCheckboxChange() {
@@ -10,7 +11,11 @@ function ExperienceForm() {
   return (
     <div id="ex-info">
       <form action="">
-        <button id="delete">x</button>
+        {canDelete && (
+          <button id="delete" type="button" onClick={onDelete}>
+            x
+          </button>
+        )}
         <label htmlFor="company">Name of Company</label>
         <input type="text" id="company" required />
         <label htmlFor="title">Position Title</label>
@@ -41,5 +46,11 @@ function ExperienceForm() {
     </div>
   );
 }
+
+ExperienceForm.propTypes = {
+  // id: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  canDelete: PropTypes.bool.isRequired,
+};
 
 export default ExperienceForm;

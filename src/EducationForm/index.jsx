@@ -1,8 +1,14 @@
-function EducationForm(canDelete, onDelete) {
+import PropTypes from "prop-types";
+
+const EducationForm = ({ onDelete, canDelete }) => {
   return (
     <div id="edu-info">
       <form action="">
-        <button id="delete">x</button>
+        {canDelete && (
+          <button id="delete" type="button" onClick={onDelete}>
+            x
+          </button>
+        )}
         <label htmlFor="school">Name of University</label>
         <input type="text" id="school" required />
         <label htmlFor="degree">Degree</label>
@@ -13,6 +19,12 @@ function EducationForm(canDelete, onDelete) {
       </form>
     </div>
   );
-}
+};
+
+EducationForm.propTypes = {
+  // id: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  canDelete: PropTypes.bool.isRequired,
+};
 
 export default EducationForm;

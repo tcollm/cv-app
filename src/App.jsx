@@ -4,18 +4,17 @@ import EducationForm from "./EducationForm";
 import ExperienceForm from "./ExperienceForm";
 
 function App() {
-  const [edForms, setEdForms] = useState([
-    { id: Date.now(), component: <EducationForm key={Date.now()} /> },
-  ]);
+  const [edForms, setEdForms] = useState([{ id: Date.now(), component: null }]);
 
-  const [exForms, setExForms] = useState([
-    { id: Date.now(), component: <ExperienceForm key={Date.now()} /> },
-  ]);
+  const [exForms, setExForms] = useState([{ id: Date.now(), component: null }]);
 
-  const handleAddNewForm = (setForms, forms, FormComponent) => {
+  const handleAddNewForm = (setForms, forms) => {
     const newId = Date.now();
-    setForms([...forms, { id: newId, component: FormComponent }]);
+    setForms([...forms, { id: newId, component: null }]);
   };
+
+  const handleAddNewEd = () => handleAddNewForm(setEdForms, edForms);
+  const handleAddNewEx = () => handleAddNewForm(setExForms, exForms);
 
   const handleDeleteForm = (setForms, forms, id) => {
     if (forms.length > 1) {
@@ -23,14 +22,7 @@ function App() {
     }
   };
 
-  const handleAddNewEd = () =>
-    handleAddNewForm(setEdForms, edForms, <EducationForm key={Date.now()} />);
-
-  const handleAddNewEx = () =>
-    handleAddNewForm(setExForms, exForms, <ExperienceForm key={Date.now()} />);
-
   const handleDeleteEd = (id) => handleDeleteForm(setEdForms, edForms, id);
-
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
   return (
@@ -46,22 +38,29 @@ function App() {
         <GeneralInfoForm />
       </section>
       <section id="education">
-        {/* <h2>Education</h2> */}
-        {/* map to only include the component (not the id) */}
-        {edForms.map(
-          (form) =>
-            // TODO: make this a creation of a form object
-            // (and make it null in handleAddNewEx)
-            // TODO: map onDelete function to form object
-            form.component
-        )}
+        {edForms.map((form) => (
+          <EducationForm
+            key={form.id}
+            id={form.id}
+            // values = {form.values}
+            onDelete={() => handleDeleteEd(form.id)}
+            canDelete={edForms.length > 1}
+          />
+        ))}
         <button id="add-new" onClick={handleAddNewEd}>
           +
         </button>
       </section>
       <section id="experience">
-        {/* <h2>Experience</h2> */}
-        {exForms.map((form) => form.component)}
+        {exForms.map((form) => (
+          <ExperienceForm
+            key={form.id}
+            id={form.id}
+            // values
+            onDelete={() => handleDeleteEx(form.id)}
+            canDelete={exForms.length > 1}
+          />
+        ))}
         <button id="add-new" onClick={handleAddNewEx}>
           +
         </button>
