@@ -17,7 +17,8 @@ section {
   margin: 32px 0px;
 }
 
-form {
+form,
+.info {
   display: flex;
   flex-direction: column;
   width: 300px;
