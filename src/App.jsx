@@ -17,7 +17,11 @@ function App() {
   const handleAddNewEx = () => handleAddNewForm(setExForms, exForms);
 
   const handleDeleteForm = (setForms, forms, id) => {
-    if (forms.length > 1) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this form?"
+    );
+
+    if (forms.length > 1 && confirmDelete) {
       setForms(forms.filter((form) => form.id !== id));
     }
   };
@@ -25,6 +29,9 @@ function App() {
   const handleDeleteEd = (id) => handleDeleteForm(setEdForms, edForms, id);
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
+  const handleGenerateResume = () => {
+    console.log("generate resume");
+  };
   return (
     <>
       <section id="header">
@@ -65,8 +72,29 @@ function App() {
           +
         </button>
       </section>
+      <section id="generate">
+        <button id="generate-resume" onClick={handleGenerateResume}>
+          Generate Resume
+        </button>
+      </section>
     </>
   );
 }
 
 export default App;
+
+/*
+  TODO:
+  - handle submit onClick []
+    - confirm that all fields are filled out []
+    - display input info (remove labels?) []
+    - do not allow editing []
+    - display edit button []
+    - still allow delete []
+  - handle edit onClick: []
+    - display form again and allow editing []
+  - handle generate resume: []
+    - confirm that all forms have been submitted 
+      (or at least filled out) []
+    - generate resume []
+*/
