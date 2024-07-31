@@ -6,7 +6,7 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [expInfo, setExpInfo] = useState({
     company: "",
-    posTitle: "",
+    position: "",
     responsibilities: "",
     startDate: "",
     endDate: "",
@@ -20,7 +20,7 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const { company, posTitle, responsibilities, startDate, endDate } = expInfo;
+    const { company, position, responsibilities, startDate, endDate } = expInfo;
 
     const currentDate = new Date();
     const startDateObj = new Date(startDate);
@@ -41,9 +41,15 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
       return;
     }
 
-    if (company && posTitle && responsibilities && startDate && endDate) {
+    if (
+      company &&
+      position &&
+      responsibilities &&
+      startDate &&
+      (currentlyWork || endDate)
+    ) {
       setIsSubmitted(true);
-      onSubmit(id, { company, posTitle, responsibilities, startDate, endDate });
+      onSubmit(id, { company, position, responsibilities, startDate, endDate });
     } else {
       alert("Please fill out all fields.");
     }
@@ -75,11 +81,11 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
             onChange={handleInputChange}
             required
           />
-          <label htmlFor="posTitle">Position Title</label>
+          <label htmlFor="position">Position Title</label>
           <input
             type="text"
-            id="posTitle"
-            value={expInfo.posTitle}
+            id="position"
+            value={expInfo.position}
             onChange={handleInputChange}
             required
           />
@@ -134,7 +140,7 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
             </button>
           )}
           <h2>{expInfo.company}</h2>
-          <h3>{expInfo.posTitle}</h3>
+          <h3>{expInfo.position}</h3>
           <p>{expInfo.responsibilities}</p>
           <p>
             {expInfo.startDate} - {currentlyWork ? "Current" : expInfo.endDate}
