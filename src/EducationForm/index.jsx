@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const EducationForm = ({ onDelete, canDelete }) => {
+const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [eduInfo, setEduInfo] = useState({
     school: "",
@@ -32,7 +32,7 @@ const EducationForm = ({ onDelete, canDelete }) => {
 
     if (school && degree && startDate && endDate) {
       setIsSubmitted(true);
-      // onSubmit(id, { company, posTitle, responsibilities, startDate, endDate });
+      onSubmit(id, { school, degree, startDate, endDate });
     } else {
       alert("Please fill out all fields.");
     }
@@ -116,9 +116,10 @@ const EducationForm = ({ onDelete, canDelete }) => {
 };
 
 EducationForm.propTypes = {
-  // id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
   canDelete: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default EducationForm;

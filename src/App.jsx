@@ -60,6 +60,9 @@ function App() {
             // values = {form.values}
             onDelete={() => handleDeleteEd(form.id)}
             canDelete={edForms.length > 1}
+            onSubmit={(formData) =>
+              handleFormSubmit(form.id, formData, setEdForms, edForms)
+            }
           />
         ))}
         <button id="add-new" onClick={handleAddNewEd}>
