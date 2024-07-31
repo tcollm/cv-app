@@ -95,11 +95,11 @@ const EducationForm = ({ onDelete, canDelete }) => {
       ) : (
         // .info is used for styling
         <div className="education info">
-          {/* {canDelete && (
+          {canDelete && (
             <button id="delete" type="button" onClick={onDelete}>
               x
             </button>
-          )} */}
+          )}
           <h2>{eduInfo.school}</h2>
           <h3>{eduInfo.degree}</h3>
           <p>
