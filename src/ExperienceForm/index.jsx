@@ -126,7 +126,6 @@ function ExperienceForm({ onDelete, canDelete }) {
         </form>
       ) : (
         // .info is used for styling
-        // TODO: make h3 larger/more defined than h2
         <div className="experience info">
           <h2>{expInfo.company}</h2>
           <h3>{expInfo.posTitle}</h3>

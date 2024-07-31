@@ -28,14 +28,18 @@ form,
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 }
-/* 
-legend {
-  padding: 8px 0px;
-  color: #ff5733;
-  font-size: 1.125rem;
-  font-weight: bold;
-  text-align: center;
-} */
+
+.info h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.info h3 {
+  font-size: 1.4rem;
+  margin: 0.3rem 0;
+  padding: 0;
+}
 
 input,
 textarea {
@@ -111,3 +115,8 @@ button:focus {
 #delete:hover {
   color: #e74c3c;
 }
+
+/* TODO: 
+  - style calendar input dates  
+  - style little calendar icon on date inputs 
+*/
