@@ -43,14 +43,9 @@ const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
     setEduInfo((prevInfo) => ({ ...prevInfo, [id]: value }));
   };
 
-  const handleEditClick = () => {
-    setIsSubmitted(false);
-  };
-
   // TODO: change date input to just years? (Not sure how I would format)
   return (
     <>
-      {" "}
       {!isSubmitted ? (
         <form action="" onSubmit={handleFormSubmit}>
           {canDelete && (
@@ -106,7 +101,7 @@ const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
             {new Date(eduInfo.startDate).getFullYear()} -{" "}
             {new Date(eduInfo.endDate).getFullYear()}
           </p>
-          <button id="edit" onClick={handleEditClick}>
+          <button id="edit" onClick={() => setIsSubmitted(false)}>
             Edit
           </button>
         </div>
