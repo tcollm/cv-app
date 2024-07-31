@@ -38,17 +38,17 @@ function GeneralInfoForm() {
           <input
             type="text"
             id="name"
-            required
             value={generalInfo.name}
             onChange={handleInputChange}
+            required
           />
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
-            required
             value={generalInfo.email}
             onChange={handleInputChange}
+            required
           />
           <label htmlFor="phone">Phone Number</label>
           <input
@@ -56,13 +56,14 @@ function GeneralInfoForm() {
             id="phone"
             name="phone"
             pattern="[0-9]{10}"
-            required
             value={generalInfo.phone}
             onChange={handleInputChange}
+            required
           />
           <button type="submit">Submit</button>
         </form>
       ) : (
+        // .info is used for styling
         <div className="general info">
           <p>
             <strong>Name:</strong> {generalInfo.name}
