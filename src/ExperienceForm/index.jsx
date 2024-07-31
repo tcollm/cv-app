@@ -128,6 +128,11 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
       ) : (
         // .info is used for styling
         <div className="experience info">
+          {canDelete && (
+            <button id="delete" type="button" onClick={onDelete}>
+              x
+            </button>
+          )}
           <h2>{expInfo.company}</h2>
           <h3>{expInfo.posTitle}</h3>
           <p>{expInfo.responsibilities}</p>
