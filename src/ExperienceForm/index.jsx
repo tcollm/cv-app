@@ -22,6 +22,25 @@ function ExperienceForm({ onDelete, canDelete }) {
 
     const { company, posTitle, responsibilities, startDate, endDate } = expInfo;
 
+    const currentDate = new Date();
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+
+    if (startDateObj > currentDate) {
+      alert("Start date cannot be in the future.");
+      return;
+    }
+
+    if (!currentlyWork && endDateObj > currentDate) {
+      alert("End date cannot be in the future.");
+      return;
+    }
+
+    if (startDateObj > endDateObj) {
+      alert("End date cannot be before start date.");
+      return;
+    }
+
     if (company && posTitle && responsibilities && startDate && endDate) {
       setIsSubmitted(true);
     } else {
@@ -73,7 +92,7 @@ function ExperienceForm({ onDelete, canDelete }) {
           />
           <label htmlFor="startDate">Start Date</label>
           <input
-            type="text"
+            type="date"
             id="startDate"
             value={expInfo.startDate}
             onChange={handleInputChange}
@@ -84,7 +103,7 @@ function ExperienceForm({ onDelete, canDelete }) {
             <>
               <label htmlFor="endDate">End Date</label>
               <input
-                type="text"
+                type="date"
                 id="endDate"
                 value={expInfo.endDate}
                 onChange={handleInputChange}
