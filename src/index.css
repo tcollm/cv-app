@@ -37,7 +37,8 @@ legend {
   text-align: center;
 } */
 
-input {
+input,
+textarea {
   margin-bottom: 12px;
   padding: 10px;
   border: 1px solid #333333;
@@ -46,7 +47,12 @@ input {
   color: white;
 }
 
-input:focus {
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
   border-color: #ff5733;
   outline: none;
 }

@@ -83,11 +83,12 @@ function ExperienceForm({ onDelete, canDelete }) {
             required
           />
           <label htmlFor="responsibilities">Main Responsibilities</label>
-          <input
+          <textarea
             type="text"
             id="responsibilities"
             value={expInfo.responsibilities}
             onChange={handleInputChange}
+            rows="5"
             required
           />
           <label htmlFor="startDate">Start Date</label>
