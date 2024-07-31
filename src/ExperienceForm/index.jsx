@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function ExperienceForm({ onDelete, canDelete }) {
+function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
   const [currentlyWork, setCurrently] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [expInfo, setExpInfo] = useState({
@@ -43,6 +43,7 @@ function ExperienceForm({ onDelete, canDelete }) {
 
     if (company && posTitle && responsibilities && startDate && endDate) {
       setIsSubmitted(true);
+      onSubmit(id, { company, posTitle, responsibilities, startDate, endDate });
     } else {
       alert("Please fill out all fields.");
     }
@@ -143,9 +144,10 @@ function ExperienceForm({ onDelete, canDelete }) {
 }
 
 ExperienceForm.propTypes = {
-  // id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
   canDelete: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ExperienceForm;

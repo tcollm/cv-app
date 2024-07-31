@@ -29,9 +29,17 @@ function App() {
   const handleDeleteEd = (id) => handleDeleteForm(setEdForms, edForms, id);
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
+  const handleFormSubmit = (id, formData, setForms, forms) => {
+    const updatedForms = forms.map((form) =>
+      form.id === id ? { ...form, component: formData } : form
+    );
+    setForms(updatedForms);
+  };
+
   const handleGenerateResume = () => {
     console.log("generate resume");
   };
+
   return (
     <>
       <section id="header">
@@ -66,6 +74,9 @@ function App() {
             // values
             onDelete={() => handleDeleteEx(form.id)}
             canDelete={exForms.length > 1}
+            onSubmit={(formData) =>
+              handleFormSubmit(form.id, formData, setExForms, exForms)
+            }
           />
         ))}
         <button id="add-new" onClick={handleAddNewEx}>
