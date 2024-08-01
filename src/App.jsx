@@ -5,6 +5,9 @@ import ExperienceForm from "./ExperienceForm";
 import GenerateResume from "./GenerateResume";
 
 function App() {
+  const fakeExForms = [];
+  const fakeEdForms = [];
+
   const [edForms, setEdForms] = useState([
     { id: Date.now(), component: null, submitted: false },
   ]);
@@ -38,6 +41,7 @@ function App() {
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
   const handleGenSubmit = (data) => {
+    console.log(data);
     setGeneralData(data);
   };
 
@@ -116,7 +120,7 @@ function App() {
         </>
       ) : (
         // TODO: fix props
-        GenerateResume(generalData, exForms, edForms)
+        GenerateResume(generalData, fakeExForms, fakeEdForms)
       )}
     </>
   );

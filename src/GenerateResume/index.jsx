@@ -4,7 +4,7 @@ function GenerateResume(generalInfo, exForms, edForms) {
   // TODO: add pdf functionality
   return (
     <>
-      <h1>generalInfo.name</h1>
+      <h1>{generalInfo.name}</h1>
       <section id="general-info">
         <p>{generalInfo.phone}</p>
         <p>{generalInfo.email}</p>
