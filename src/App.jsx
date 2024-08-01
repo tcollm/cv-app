@@ -12,6 +12,8 @@ function App() {
     { id: Date.now(), component: null, submitted: false },
   ]);
 
+  const [generalData, setGeneralData] = useState(null);
+
   const [generateClicked, setGenerateClicked] = useState(false);
 
   const handleAddNewForm = (setForms, forms) => {
@@ -35,6 +37,10 @@ function App() {
   const handleDeleteEd = (id) => handleDeleteForm(setEdForms, edForms, id);
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
+  const handleGenSubmit = (data) => {
+    setGeneralData(data);
+  };
+
   const handleFormSubmit = (id, formData, setForms, forms) => {
     const updatedForms = forms.map((form) =>
       form.id === id ? { ...form, component: formData, submitted: true } : form
@@ -43,7 +49,7 @@ function App() {
   };
 
   const handleGenerateResume = () => {
-    // if everything submitted
+    // if everything is submitted
     const allEdSubmitted = edForms.every((form) => form.submitted);
     const allExSubmitted = exForms.every((form) => form.submitted);
 
@@ -66,7 +72,7 @@ function App() {
             </p>
           </section>
           <section id="general">
-            <GeneralInfoForm />
+            <GeneralInfoForm onSubmit={handleGenSubmit} />
           </section>
           <section id="education">
             {edForms.map((form) => (
@@ -110,7 +116,7 @@ function App() {
         </>
       ) : (
         // TODO: fix props
-        GenerateResume(GeneralInfoForm, exForms, edForms)
+        GenerateResume(generalData, exForms, edForms)
       )}
     </>
   );

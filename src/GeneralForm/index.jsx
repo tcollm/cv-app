@@ -1,6 +1,7 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function GeneralInfoForm() {
+function GeneralInfoForm({ onSubmit }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [generalInfo, setGeneralInfo] = useState({
     name: "",
@@ -12,6 +13,7 @@ function GeneralInfoForm() {
     event.preventDefault();
 
     const { name, email, phone } = generalInfo;
+    onSubmit(generalInfo);
 
     if (name && email && phone) {
       setIsSubmitted(true);
@@ -82,5 +84,9 @@ function GeneralInfoForm() {
     </>
   );
 }
+
+GeneralInfoForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default GeneralInfoForm;
