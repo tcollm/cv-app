@@ -43,6 +43,7 @@ function GeneralInfoForm({ onSubmit }) {
             value={generalInfo.name}
             onChange={handleInputChange}
             required
+            // TODO: add autofill attribute
           />
           <label htmlFor="email">Email</label>
           <input

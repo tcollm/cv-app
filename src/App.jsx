@@ -139,6 +139,7 @@ function App() {
       ) : (
         <>
           {/* TODO: fix props */}
+          {console.log("General Data:", generalData)}
           <GenerateResume
             generalData={generalData}
             educationData={edForms}

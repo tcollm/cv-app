@@ -1,16 +1,19 @@
 import PropTypes from "prop-types";
 
-function GenerateResume(generalInfo, experienceData, educationData) {
+function GenerateResume({ generalData, experienceData, educationData }) {
   // TODO: add pdf functionality
+  console.log("GEN DATA:");
+  console.log(`TYPEOF: ${typeof generalData}`);
+  console.log(generalData);
   return (
     <>
-      <h1>{generalInfo.name}</h1>
+      <h1>{generalData.name}</h1>
       <section id="general-info">
-        <p>{generalInfo.phone}</p>
-        <p>{generalInfo.email}</p>
+        <p>{generalData.phone}</p>
+        <p>{generalData.email}</p>
       </section>
       <section id="experience">
-        {experienceData.map((form) => (
+        {/* {experienceData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
               <p>form.position</p>
@@ -23,10 +26,10 @@ function GenerateResume(generalInfo, experienceData, educationData) {
             </div>
             <p>form.responsibilities</p>
           </div>
-        ))}
+        ))} */}
       </section>
       <section id="education">
-        {educationData.map((form) => (
+        {/* {educationData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
               <p>{form.degree}</p>
@@ -39,16 +42,37 @@ function GenerateResume(generalInfo, experienceData, educationData) {
               </p>
             </div>
           </div>
-        ))}
+        ))} */}
       </section>
     </>
   );
 }
 
 GenerateResume.propTypes = {
-  generalInfo: PropTypes.object.isRequired,
-  experienceData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  educationData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  generalData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+  experienceData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      company: PropTypes.string.isRequired,
+      position: PropTypes.string.isRequired,
+      responsibilities: PropTypes.string,
+      startDate: PropTypes.string.isRequired,
+      endDate: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  educationData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      school: PropTypes.string.isRequired,
+      degree: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
+      endDate: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default GenerateResume;
