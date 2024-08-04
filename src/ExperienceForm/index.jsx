@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
+function ExperienceForm({ id, values, onDelete, canDelete, onSubmit }) {
   const [currentlyWork, setCurrently] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [expInfo, setExpInfo] = useState({
-    company: "",
-    position: "",
-    responsibilities: "",
-    startDate: "",
-    endDate: "",
-  });
+  const [expInfo, setExpInfo] = useState(values);
+
+  // useEffect is necessary to update values
+  // when changes are made outside of the component.
+  useEffect(() => {
+    setExpInfo(values);
+  }, [values]);
 
   const handleCheckboxChange = () => {
     setCurrently(!currentlyWork);
@@ -49,7 +49,7 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
       (currentlyWork || endDate)
     ) {
       setIsSubmitted(true);
-      onSubmit(id, { company, position, responsibilities, startDate, endDate });
+      onSubmit(id, expInfo);
     } else {
       alert("Please fill out all fields.");
     }
@@ -123,6 +123,7 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
           <label>
             <input
               type="checkbox"
+              id="checkbox"
               // id="current"
               checked={currentlyWork}
               onChange={handleCheckboxChange}
@@ -156,6 +157,13 @@ function ExperienceForm({ id, onDelete, canDelete, onSubmit }) {
 
 ExperienceForm.propTypes = {
   id: PropTypes.number.isRequired,
+  values: PropTypes.shape({
+    company: PropTypes.string,
+    position: PropTypes.string,
+    responsibilities: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+  }).isRequired,
   onDelete: PropTypes.func.isRequired,
   canDelete: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,

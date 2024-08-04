@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function GenerateResume(generalInfo, exForms, edForms) {
+function GenerateResume(generalInfo, experienceData, educationData) {
   // TODO: add pdf functionality
   return (
     <>
@@ -10,7 +10,7 @@ function GenerateResume(generalInfo, exForms, edForms) {
         <p>{generalInfo.email}</p>
       </section>
       <section id="experience">
-        {exForms.map((form) => (
+        {experienceData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
               <p>form.position</p>
@@ -26,7 +26,7 @@ function GenerateResume(generalInfo, exForms, edForms) {
         ))}
       </section>
       <section id="education">
-        {edForms.map((form) => (
+        {educationData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
               <p>{form.degree}</p>
@@ -47,8 +47,8 @@ function GenerateResume(generalInfo, exForms, edForms) {
 
 GenerateResume.propTypes = {
   generalInfo: PropTypes.object.isRequired,
-  exForms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  edForms: PropTypes.arrayOf(PropTypes.object).isRequired,
+  experienceData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  educationData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default GenerateResume;

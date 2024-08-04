@@ -5,33 +5,51 @@ import ExperienceForm from "./ExperienceForm";
 import GenerateResume from "./GenerateResume";
 
 function App() {
-  const fakeExForms = [];
-  const fakeEdForms = [];
-
   const [edForms, setEdForms] = useState([
-    { id: Date.now(), component: null, submitted: false },
+    {
+      id: Date.now(),
+      values: { school: "", degree: "", startDate: "", endDate: "" },
+      submitted: false,
+    },
   ]);
   const [exForms, setExForms] = useState([
-    { id: Date.now(), component: null, submitted: false },
+    {
+      id: Date.now(),
+      values: { position: "", company: "", startDate: "", endDate: "" },
+      submitted: false,
+    },
   ]);
 
   const [generalData, setGeneralData] = useState(null);
-
   const [generateClicked, setGenerateClicked] = useState(false);
 
-  const handleAddNewForm = (setForms, forms) => {
+  const handleAddNewForm = (setForms, forms, initialValues) => {
     const newId = Date.now();
-    setForms([...forms, { id: newId, component: null }]);
+    setForms([
+      ...forms,
+      { id: newId, values: initialValues, submitted: false },
+    ]);
   };
 
-  const handleAddNewEd = () => handleAddNewForm(setEdForms, edForms);
-  const handleAddNewEx = () => handleAddNewForm(setExForms, exForms);
+  const handleAddNewEd = () =>
+    handleAddNewForm(setEdForms, edForms, {
+      school: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+    });
+  const handleAddNewEx = () =>
+    handleAddNewForm(setExForms, exForms, {
+      position: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+    });
 
   const handleDeleteForm = (setForms, forms, id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this form?"
     );
-
     if (forms.length > 1 && confirmDelete) {
       setForms(forms.filter((form) => form.id !== id));
     }
@@ -41,13 +59,12 @@ function App() {
   const handleDeleteEx = (id) => handleDeleteForm(setExForms, exForms, id);
 
   const handleGenSubmit = (data) => {
-    console.log(data);
     setGeneralData(data);
   };
 
   const handleFormSubmit = (id, formData, setForms, forms) => {
     const updatedForms = forms.map((form) =>
-      form.id === id ? { ...form, component: formData, submitted: true } : form
+      form.id === id ? { ...form, values: formData, submitted: true } : form
     );
     setForms(updatedForms);
   };
@@ -83,14 +100,15 @@ function App() {
               <EducationForm
                 key={form.id}
                 id={form.id}
-                // values = {form.values}
+                values={form.values}
                 onDelete={() => handleDeleteEd(form.id)}
                 canDelete={edForms.length > 1}
-                onSubmit={(formData) =>
-                  handleFormSubmit(form.id, formData, setEdForms, edForms)
+                onSubmit={(formId, formData) =>
+                  handleFormSubmit(formId, formData, setEdForms, edForms)
                 }
               />
             ))}
+
             <button id="add-new" onClick={handleAddNewEd}>
               +
             </button>
@@ -100,11 +118,11 @@ function App() {
               <ExperienceForm
                 key={form.id}
                 id={form.id}
-                // values
+                values={form.values}
                 onDelete={() => handleDeleteEx(form.id)}
                 canDelete={exForms.length > 1}
-                onSubmit={(formData) =>
-                  handleFormSubmit(form.id, formData, setExForms, exForms)
+                onSubmit={(formId, formData) =>
+                  handleFormSubmit(formId, formData, setExForms, exForms)
                 }
               />
             ))}
@@ -119,8 +137,14 @@ function App() {
           </section>
         </>
       ) : (
-        // TODO: fix props
-        GenerateResume(generalData, fakeExForms, fakeEdForms)
+        <>
+          {/* TODO: fix props */}
+          <GenerateResume
+            generalData={generalData}
+            educationData={edForms}
+            experienceData={exForms}
+          />
+        </>
       )}
     </>
   );

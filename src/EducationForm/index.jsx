@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
+const EducationForm = ({ id, values, onDelete, canDelete, onSubmit }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [eduInfo, setEduInfo] = useState({
-    school: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-  });
+  const [eduInfo, setEduInfo] = useState(values);
+
+  // useEffect is necessary to update values
+  // when changes are made outside of the component.
+  useEffect(() => {
+    setEduInfo(values);
+  }, [values]);
 
   // TODO: make this DRY (used in multiple files)
   const handleFormSubmit = (event) => {
@@ -32,7 +33,7 @@ const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
 
     if (school && degree && startDate && endDate) {
       setIsSubmitted(true);
-      onSubmit(id, { school, degree, startDate, endDate });
+      onSubmit(id, eduInfo);
     } else {
       alert("Please fill out all fields.");
     }
@@ -112,6 +113,12 @@ const EducationForm = ({ id, onDelete, canDelete, onSubmit }) => {
 
 EducationForm.propTypes = {
   id: PropTypes.number.isRequired,
+  values: PropTypes.shape({
+    school: PropTypes.string,
+    degree: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+  }).isRequired,
   onDelete: PropTypes.func.isRequired,
   canDelete: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
