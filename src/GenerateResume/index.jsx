@@ -23,7 +23,7 @@ function GenerateResume({ generalData, experienceData, educationData }) {
             <div className={styles.right}>
               <p>
                 {form.values.startDate} -{" "}
-                {form.values.endDate === null ? "Current" : form.values.endDate}
+                {form.values.currentlyWork ? "Current" : form.values.endDate}
               </p>
             </div>
             <p>{form.values.responsibilities}</p>
@@ -62,23 +62,24 @@ GenerateResume.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       values: PropTypes.shape({
-        company: PropTypes.string.isRequired,
-        position: PropTypes.string.isRequired,
+        company: PropTypes.string,
+        position: PropTypes.string,
         responsibilities: PropTypes.string,
-        startDate: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-      }),
+        startDate: PropTypes.string,
+        endDate: PropTypes.string,
+        currentlyWork: PropTypes.bool,
+      }).isRequired,
     })
   ).isRequired,
   educationData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       values: PropTypes.shape({
-        school: PropTypes.string.isRequired,
-        degree: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-      }),
+        school: PropTypes.string,
+        degree: PropTypes.string,
+        startDate: PropTypes.string,
+        endDate: PropTypes.string,
+      }).isRequired,
     })
   ).isRequired,
 };

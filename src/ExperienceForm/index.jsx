@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 function ExperienceForm({ id, values, onDelete, canDelete, onSubmit }) {
-  const [currentlyWork, setCurrently] = useState(false);
+  const [currentlyWork, setCurrently] = useState(values.currentlyWork || false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [expInfo, setExpInfo] = useState(values);
 
@@ -14,13 +14,24 @@ function ExperienceForm({ id, values, onDelete, canDelete, onSubmit }) {
 
   const handleCheckboxChange = () => {
     setCurrently(!currentlyWork);
+    setExpInfo((prevInfo) => ({
+      ...prevInfo,
+      currentlyWork: !currentlyWork,
+    }));
   };
 
   // TODO: make this DRY (used in multiple files)
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const { company, position, responsibilities, startDate, endDate } = expInfo;
+    const {
+      company,
+      position,
+      responsibilities,
+      startDate,
+      endDate,
+      currentlyWork,
+    } = expInfo;
 
     const currentDate = new Date();
     const startDateObj = new Date(startDate);
@@ -113,7 +124,7 @@ function ExperienceForm({ id, values, onDelete, canDelete, onSubmit }) {
               <input
                 type="date"
                 id="endDate"
-                value={currentlyWork ? null : expInfo.endDate}
+                value={currentlyWork ? -1 : expInfo.endDate}
                 onChange={handleInputChange}
                 required
               />
@@ -163,6 +174,7 @@ ExperienceForm.propTypes = {
     responsibilities: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
+    currentlyWork: PropTypes.bool,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
   canDelete: PropTypes.bool.isRequired,

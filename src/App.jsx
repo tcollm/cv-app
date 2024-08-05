@@ -44,6 +44,7 @@ function App() {
       company: "",
       startDate: "",
       endDate: "",
+      currentlyWork: false,
     });
 
   const handleDeleteForm = (setForms, forms, id) => {
