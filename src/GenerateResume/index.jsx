@@ -1,25 +1,25 @@
 import PropTypes from "prop-types";
+import styles from "./styles.module.css";
 
 function GenerateResume({ generalData, experienceData, educationData }) {
   // TODO: add pdf functionality
-  console.log("GEN DATA:");
-  console.log(`TYPEOF: ${typeof experienceData}`);
-  console.log(experienceData);
   return (
-    <>
-      <h1>{generalData.name}</h1>
-      <section id="general-info">
+    <div className={styles.resumeWrapper}>
+      <h1 className={styles.resumeTitle}>{generalData.name}</h1>
+      <section
+        className={`${styles.section} ${styles["section-general-info"]}`}
+      >
         <p>{generalData.phone}</p>
         <p>{generalData.email}</p>
       </section>
-      <section id="experience">
+      <section className={`${styles.section} ${styles["section-experience"]}`}>
         {experienceData.map((form) => (
-          <div key={form.id} id={form.id}>
-            <div id="left">
+          <div key={form.id} className={styles.form}>
+            <div className={styles.left}>
               <p>{form.values.position}</p>
               <p>{form.values.company}</p>
             </div>
-            <div id="right">
+            <div className={styles.right}>
               <p>
                 {form.values.startDate} - {form.values.endDate}
                 {form.values.startDate} -{" "}
@@ -30,14 +30,14 @@ function GenerateResume({ generalData, experienceData, educationData }) {
           </div>
         ))}
       </section>
-      <section id="education">
+      <section className={`${styles.section} ${styles["section-education"]}`}>
         {educationData.map((form) => (
-          <div key={form.id} id={form.id}>
-            <div id="left">
+          <div key={form.id} className={styles.form}>
+            <div className={styles.left}>
               <p>{form.values.degree}</p>
               <p>{form.values.school}</p>
             </div>
-            <div id="right">
+            <div className={styles.right}>
               <p>
                 {new Date(form.values.startDate).getFullYear()} -{" "}
                 {new Date(form.values.endDate).getFullYear()}
@@ -46,10 +46,11 @@ function GenerateResume({ generalData, experienceData, educationData }) {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 }
 
+// TODO: add values prop around company, pos, etc.
 GenerateResume.propTypes = {
   generalData: PropTypes.shape({
     name: PropTypes.string.isRequired,

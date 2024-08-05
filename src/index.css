@@ -1,5 +1,6 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Roboto, Ubuntu;
 }
 
 body {
@@ -10,9 +11,6 @@ body {
   height: 100vh;
 }
 
-/* TODO: margin bottom is not applying,
-  so experience is touching the very bottom 
-  of the page */
 section {
   margin: 32px 0px;
 }
