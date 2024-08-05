@@ -13,6 +13,7 @@ function GenerateResume({ generalData, experienceData, educationData }) {
         <p>{generalData.email}</p>
       </section>
       <section className={`${styles.section} ${styles["section-experience"]}`}>
+        <h2 className={styles.sectionTitle}>Experience</h2>
         {experienceData.map((form) => (
           <div key={form.id} className={styles.form}>
             <div className={styles.left}>
@@ -21,9 +22,8 @@ function GenerateResume({ generalData, experienceData, educationData }) {
             </div>
             <div className={styles.right}>
               <p>
-                {form.values.startDate} - {form.values.endDate}
                 {form.values.startDate} -{" "}
-                {form.values.currentlyWork ? "Current" : form.values.endDate}
+                {form.values.endDate === null ? "Current" : form.values.endDate}
               </p>
             </div>
             <p>{form.values.responsibilities}</p>
@@ -31,6 +31,7 @@ function GenerateResume({ generalData, experienceData, educationData }) {
         ))}
       </section>
       <section className={`${styles.section} ${styles["section-education"]}`}>
+        <h2 className={styles.sectionTitle}>Education</h2>
         {educationData.map((form) => (
           <div key={form.id} className={styles.form}>
             <div className={styles.left}>

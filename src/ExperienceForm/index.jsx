@@ -113,7 +113,7 @@ function ExperienceForm({ id, values, onDelete, canDelete, onSubmit }) {
               <input
                 type="date"
                 id="endDate"
-                value={expInfo.endDate}
+                value={currentlyWork ? null : expInfo.endDate}
                 onChange={handleInputChange}
                 required
               />
