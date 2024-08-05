@@ -139,11 +139,11 @@ function App() {
       ) : (
         <>
           {/* TODO: fix props */}
-          {console.log("General Data:", generalData)}
+          {console.log("Experience Data:", exForms[0])}
           <GenerateResume
             generalData={generalData}
-            educationData={edForms}
             experienceData={exForms}
+            educationData={edForms}
           />
         </>
       )}

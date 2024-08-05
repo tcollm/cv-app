@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 function GenerateResume({ generalData, experienceData, educationData }) {
   // TODO: add pdf functionality
   console.log("GEN DATA:");
-  console.log(`TYPEOF: ${typeof generalData}`);
-  console.log(generalData);
+  console.log(`TYPEOF: ${typeof experienceData}`);
+  console.log(experienceData);
   return (
     <>
       <h1>{generalData.name}</h1>
@@ -13,36 +13,38 @@ function GenerateResume({ generalData, experienceData, educationData }) {
         <p>{generalData.email}</p>
       </section>
       <section id="experience">
-        {/* {experienceData.map((form) => (
+        {experienceData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
-              <p>form.position</p>
-              <p>form.company</p>
+              <p>{form.values.position}</p>
+              <p>{form.values.company}</p>
             </div>
             <div id="right">
               <p>
-                {form.startDate} - {form.endDate}
+                {form.values.startDate} - {form.values.endDate}
+                {form.values.startDate} -{" "}
+                {form.values.currentlyWork ? "Current" : form.values.endDate}
               </p>
             </div>
-            <p>form.responsibilities</p>
+            <p>{form.values.responsibilities}</p>
           </div>
-        ))} */}
+        ))}
       </section>
       <section id="education">
-        {/* {educationData.map((form) => (
+        {educationData.map((form) => (
           <div key={form.id} id={form.id}>
             <div id="left">
-              <p>{form.degree}</p>
-              <p>{form.school}</p>
+              <p>{form.values.degree}</p>
+              <p>{form.values.school}</p>
             </div>
             <div id="right">
               <p>
-                {new Date(form.startDate).getFullYear()} -{" "}
-                {new Date(form.endDate).getFullYear()}
+                {new Date(form.values.startDate).getFullYear()} -{" "}
+                {new Date(form.values.endDate).getFullYear()}
               </p>
             </div>
           </div>
-        ))} */}
+        ))}
       </section>
     </>
   );
