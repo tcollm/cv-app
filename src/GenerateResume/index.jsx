@@ -60,20 +60,24 @@ GenerateResume.propTypes = {
   experienceData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      company: PropTypes.string.isRequired,
-      position: PropTypes.string.isRequired,
-      responsibilities: PropTypes.string,
-      startDate: PropTypes.string.isRequired,
-      endDate: PropTypes.string.isRequired,
+      values: PropTypes.shape({
+        company: PropTypes.string.isRequired,
+        position: PropTypes.string.isRequired,
+        responsibilities: PropTypes.string,
+        startDate: PropTypes.string.isRequired,
+        endDate: PropTypes.string.isRequired,
+      }),
     })
   ).isRequired,
   educationData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      school: PropTypes.string.isRequired,
-      degree: PropTypes.string.isRequired,
-      startDate: PropTypes.string.isRequired,
-      endDate: PropTypes.string.isRequired,
+      values: PropTypes.shape({
+        school: PropTypes.string.isRequired,
+        degree: PropTypes.string.isRequired,
+        startDate: PropTypes.string.isRequired,
+        endDate: PropTypes.string.isRequired,
+      }),
     })
   ).isRequired,
 };

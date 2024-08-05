@@ -139,7 +139,6 @@ function App() {
       ) : (
         <>
           {/* TODO: fix props */}
-          {console.log("Experience Data:", exForms[0])}
           <GenerateResume
             generalData={generalData}
             experienceData={exForms}
